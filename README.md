@@ -35,3 +35,78 @@ This project is built with a modular, object-oriented architecture and demonstra
 ## Architecture Overview
 
 The application is designed with a clear separation of concerns, making it easy to understand, test, and extend.
+
+[User] <--> [Streamlit UI (app.py)]
+|
+|--- [DatabaseManager (database.py)] <--> [SQLite DB]
+|
+|--- [VectorStoreManager (vectorstore.py)] <--> [FAISS Index]
+|
+|--- [LLMManager (llm.py)] <--> [Groq API]
+
+---
+
+## Local Setup and Installation
+
+Follow these steps to get the project running on your local machine.
+
+### Prerequisites
+
+-   Python 3.10 or newer
+-   A Groq API Key
+
+### Step-by-Step Guide
+
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    cd Campus
+    ```
+
+2.  **Create and Activate a Virtual Environment**
+    This project uses a virtual environment to manage dependencies. If your environment is named `chat`:
+    ```bash
+    # Create the virtual environment
+    python -m venv chat
+
+    # Activate it (Windows)
+    .\chat\Scripts\activate
+
+    # Activate it (macOS/Linux)
+    source chat/bin/activate
+    ```
+
+3.  **Install Dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Set Up Environment Variables**
+    Create a file named `.env` in the root directory. Add your Groq API key to this file:
+    ```
+    GROQ_API_KEY="YOUR_GROQ_API_KEY_HERE"
+    ```
+
+5.  **Add Admin Documents**
+    Place the official campus PDF documents (e.g., policy handbooks, academic calendars) inside the `admin_docs/` folder. The app will process these on its first run to build the main vector store.
+
+6.  **Run the Application**
+    ```bash
+    streamlit run app.py
+    ```
+    Your browser should open to `http://localhost:8501` with the running application.
+
+## Usage
+
+1.  **Sign Up / Login**: Create a new account or log in with existing credentials.
+2.  **Create a Chat**: Start a new chat from the sidebar.
+3.  **Configure Strategies**: Use the dropdowns in the sidebar to select your desired chunking and search strategies for the session.
+4.  **Upload Documents**: Optionally, upload your own PDFs for the chatbot to consider during the current chat session.
+5.  **Ask Questions**: Start chatting!
+
+## Running Tests
+
+To ensure the database logic is working correctly, you can run the provided unit tests:
+
+```bash
+python -m unittest discover tests
