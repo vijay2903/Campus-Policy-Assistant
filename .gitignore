@@ -1,0 +1,28 @@
+# Python virtual environment
+/chat/
+/venv/
+/.venv/
+/env/
+
+# Python cache and bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Secret environment variables
+.env
+
+# Application-generated data
+/user_uploads/
+/vector_store/
+*.db
+*.sqlite3
+
+# IDE and editor folders
+.idea/
+.vscode/
+*.swp
+
+# Streamlit-specific folder
+.streamlit/
